@@ -5,17 +5,25 @@
  */
 package LoginUI;
 
+import java.io.File;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author ulacit
  */
 public class Login extends javax.swing.JFrame {
-
+    File Users = new File("Users.csv");
+    
+    String username;
+    String password;
     /**
      * Creates new form Login
      */
     public Login() {
         initComponents();
+        setLocationRelativeTo(null);
+        setResizable(false);
         setTitle("Login");
     }
 
@@ -38,25 +46,27 @@ public class Login extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         lblTitle.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        lblTitle.setText("User Login");
+        lblTitle.setText("Entrada de Usuario");
 
         lblUser.setText("Nombre de Usuario:");
 
         lblPass.setText("Contraseña:");
 
         btnLogin.setText("Ingresar");
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoginActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(39, 39, 39)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(150, 150, 150)
-                        .addComponent(lblTitle))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(lblUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lblPass, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -65,15 +75,16 @@ public class Login extends javax.swing.JFrame {
                             .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(txtPass)
-                                .addComponent(txtUser, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)))))
+                                .addComponent(txtUser, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE))))
+                    .addComponent(lblTitle))
                 .addContainerGap(136, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(44, 44, 44)
+                .addGap(43, 43, 43)
                 .addComponent(lblTitle)
-                .addGap(41, 41, 41)
+                .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblUser)
                     .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -88,6 +99,17 @@ public class Login extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        try {
+            username = txtUser.getText();
+            password = txtPass.getText();
+                
+            }
+        } catch (Exception ex){
+            JOptionPane.showMessageDialog(null, "En este momento no podemos atender la solicitud.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnLoginActionPerformed
 
     /**
      * @param args the command line arguments
