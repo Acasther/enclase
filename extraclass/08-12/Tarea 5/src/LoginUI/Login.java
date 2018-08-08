@@ -117,10 +117,10 @@ public class Login extends javax.swing.JFrame {
                 user = scan.next();
                 pass = scan.next();
                 if (user.trim().equals(username.trim()) && pass.trim().equals(password.trim())) {
-                    JOptionPane.showMessageDialog(rootPane, "El login ha sido un exito!", "Login exitoso", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(rootPane, "Usuario aceptado", "Login exitoso", JOptionPane.INFORMATION_MESSAGE);
                     found = true;
                 } else { 
-                    JOptionPane.showMessageDialog(rootPane, "Los datos introducidos no concuerdan.\nIntentelo de nuevo.", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(rootPane, "Usuario no aceptado.\nIntentelo de nuevo.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
             
