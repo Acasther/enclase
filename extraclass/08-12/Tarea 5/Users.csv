@@ -1,4 +1,4 @@
-Username;Password
-user1;123
-user2;321
-user3;312
+Username,Password
+user1,123
+user2,321
+user3,312

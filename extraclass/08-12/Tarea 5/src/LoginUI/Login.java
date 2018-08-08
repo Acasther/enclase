@@ -6,6 +6,8 @@
 package LoginUI;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 import javax.swing.JOptionPane;
 
 /**
@@ -13,10 +15,10 @@ import javax.swing.JOptionPane;
  * @author ulacit
  */
 public class Login extends javax.swing.JFrame {
-    File Users = new File("Users.csv");
-    
     String username;
     String password;
+    String filepath = "Users.csv";
+    private static Scanner scan;
     /**
      * Creates new form Login
      */
@@ -25,6 +27,7 @@ public class Login extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setResizable(false);
         setTitle("Login");
+        
     }
 
     /**
@@ -101,14 +104,30 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        boolean found = false;
+        String user = "";
+        String pass = "";
+        username = txtUser.getText();
+        password = txtPass.getText();
         try {
-            username = txtUser.getText();
-            password = txtPass.getText();
-                
+            scan = new Scanner(new File(filepath));
+            scan.useDelimiter("[,\n]");
+            
+            while (scan.hasNext() && !found) {
+                user = scan.next();
+                pass = scan.next();
+                if (user.trim().equals(username.trim()) && pass.trim().equals(password.trim())) {
+                    JOptionPane.showMessageDialog(rootPane, "El login ha sido un exito!", "Login exitoso", JOptionPane.INFORMATION_MESSAGE);
+                    found = true;
+                } else { 
+                    JOptionPane.showMessageDialog(rootPane, "Los datos introducidos no concuerdan.\nIntentelo de nuevo.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
             }
-        } catch (Exception ex){
-            JOptionPane.showMessageDialog(null, "En este momento no podemos atender la solicitud.", "Error", JOptionPane.ERROR_MESSAGE);
+            
+        } catch (FileNotFoundException e){
+            JOptionPane.showMessageDialog(rootPane, "En este momento no podemos atender la solicitud.", "Error", JOptionPane.ERROR_MESSAGE);
         }
+        scan.close();
     }//GEN-LAST:event_btnLoginActionPerformed
 
     /**
